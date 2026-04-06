@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>When War Meets Oil: How Conflict Disrupts the Global Supply Chain</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Source+Sans+3:wght@300;400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --oil-black: #0D0D0D;
+    --crude-dark: #1A1A2E;
+    --pipeline-gold: #D4A853;
+    --flame-orange: #E87A20;
+    --refinery-steel: #4A5568;
+    --sea-blue: #1B3A5C;
+    --alert-red: #C0392B;
+    --sand: #F5E6CA;
+    --light-bg: #FAF6F0;
+    --text-primary: #1A1A2E;
+    --text-secondary: #4A5568;
+    --accent-gradient: linear-gradient(135deg, #D4A853, #E87A20);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    background: var(--light-bg);
+    color: var(--text-primary);
+    line-height: 1.7;
+    font-size: 18px;
+    overflow-x: hidden;
+  }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    background: var(--crude-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 80%, rgba(212,168,83,0.15) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 20%, rgba(232,122,32,0.1) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 50%, rgba(27,58,92,0.3) 0%, transparent 70%);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+    padding: 40px;
+    text-align: center;
+  }
+
+  .hero-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--pipeline-gold);
+    margin-bottom: 30px;
+    opacity: 0;
+    animation: fadeUp 1s 0.3s forwards;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 6vw, 5.5rem);
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.1;
+    margin-bottom: 30px;
+    opacity: 0;
+    animation: fadeUp 1s 0.5s forwards;
+  }
+
+  .hero h1 span {
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-subtitle {
+    font-size: 1.25rem;
+    color: rgba(255,255,255,0.7);
+    font-weight: 300;
+    max-width: 650px;
+    margin: 0 auto 40px;
+    opacity: 0;
+    animation: fadeUp 1s 0.7s forwards;
+  }
+
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 1s 0.9s forwards;
+  }
+
+  .hero-stat {
+    text-align: center;
+  }
+
+  .hero-stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--pipeline-gold);
+    display: block;
+  }
+
+  .hero-stat-label {
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+  }
+
+  /* OIL DROPS ANIMATION */
+  .oil-drops {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .oil-drop {
+    position: absolute;
+    width: 6px;
+    height: 8px;
+    background: var(--pipeline-gold);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    opacity: 0.15;
+    animation: drip 6s infinite;
+  }
+
+  @keyframes drip {
+    0% { transform: translateY(-20px); opacity: 0; }
+    10% { opacity: 0.15; }
+    100% { transform: translateY(100vh); opacity: 0; }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ARTICLE BODY */
+  .article-body {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 80px 24px;
+  }
+
+  .article-body p {
+    margin-bottom: 1.5em;
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+  }
+
+  .article-body h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem;
+    font-weight: 900;
+    color: var(--text-primary);
+    margin: 80px 0 24px;
+    line-height: 1.2;
+  }
+
+  .article-body h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 50px 0 16px;
+  }
+
+  .drop-cap::first-letter {
+    float: left;
+    font-family: 'Playfair Display', serif;
+    font-size: 4.5rem;
+    font-weight: 900;
+    line-height: 0.8;
+    margin: 0 12px 0 0;
+    color: var(--pipeline-gold);
+  }
+
+  /* PULL QUOTE */
+  .pull-quote {
+    border-left: 4px solid var(--pipeline-gold);
+    padding: 30px 40px;
+    margin: 50px 0;
+    background: linear-gradient(135deg, rgba(212,168,83,0.06), rgba(232,122,32,0.04));
+    border-radius: 0 12px 12px 0;
+  }
+
+  .pull-quote p {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-style: italic;
+    color: var(--text-primary);
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }
+
+  .pull-quote cite {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--refinery-steel);
+    font-style: normal;
+  }
+
+  /* FIGURE / CHART CONTAINERS */
+  .figure-block {
+    margin: 60px -40px;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.06);
+    overflow: hidden;
+  }
+
+  .figure-header {
+    padding: 24px 32px 16px;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+  }
+
+  .figure-header h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .figure-header .figure-sub {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-top: 4px;
+  }
+
+  .figure-content {
+    padding: 32px;
+  }
+
+  .figure-caption {
+    padding: 16px 32px;
+    font-size: 0.8rem;
+    color: var(--refinery-steel);
+    background: rgba(0,0,0,0.02);
+    border-top: 1px solid rgba(0,0,0,0.05);
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* TIMELINE CHART */
+  .timeline-chart {
+    position: relative;
+    width: 100%;
+    height: 320px;
+    display: flex;
+    align-items: flex-end;
+    gap: 2px;
+    padding-bottom: 40px;
+  }
+
+  .timeline-bar-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
+
+  .timeline-bar {
+    width: 100%;
+    max-width: 48px;
+    border-radius: 6px 6px 0 0;
+    position: relative;
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+
+  .timeline-bar:hover {
+    filter: brightness(1.15);
+    transform: scaleY(1.02);
+    transform-origin: bottom;
+  }
+
+  .timeline-bar .tooltip {
+    display: none;
+    position: absolute;
+    bottom: 105%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--crude-dark);
+    color: #fff;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    white-space: nowrap;
+    z-index: 10;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .timeline-bar:hover .tooltip { display: block; }
+
+  .timeline-label {
+    position: absolute;
+    bottom: -35px;
+    font-size: 0.65rem;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--refinery-steel);
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  /* SUPPLY CHAIN DIAGRAM */
+  .supply-chain {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    flex-wrap: wrap;
+    padding: 20px 0;
+  }
+
+  .chain-node {
+    flex: 1;
+    min-width: 100px;
+    text-align: center;
+    padding: 20px 10px;
+    background: linear-gradient(145deg, #fff, #f7f3ed);
+    border: 2px solid rgba(212,168,83,0.3);
+    border-radius: 12px;
+    transition: all 0.3s;
+    position: relative;
+  }
+
+  .chain-node:hover {
+    border-color: var(--pipeline-gold);
+    box-shadow: 0 4px 20px rgba(212,168,83,0.2);
+    transform: translateY(-4px);
+  }
+
+  .chain-node.disrupted {
+    border-color: var(--alert-red);
+    background: linear-gradient(145deg, #fff5f5, #ffe8e5);
+  }
+
+  .chain-node.disrupted::after {
+    content: '⚠';
+    position: absolute;
+    top: -10px;
+    right: -6px;
+    font-size: 1.2rem;
+  }
+
+  .chain-icon {
+    font-size: 2rem;
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .chain-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .chain-arrow {
+    font-size: 1.4rem;
+    color: var(--pipeline-gold);
+    flex-shrink: 0;
+  }
+
+  /* IMPACT CARDS */
+  .impact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    margin: 40px 0;
+  }
+
+  .impact-card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 28px;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.04);
+    border: 1px solid rgba(0,0,0,0.06);
+    transition: all 0.3s;
+  }
+
+  .impact-card:hover {
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+    transform: translateY(-3px);
+  }
+
+  .impact-card .card-icon {
+    font-size: 2.2rem;
+    margin-bottom: 14px;
+    display: block;
+  }
+
+  .impact-card h5 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+    color: var(--text-primary);
+  }
+
+  .impact-card p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin-bottom: 0;
+  }
+
+  /* DATA CALLOUT */
+  .data-callout {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    background: var(--crude-dark);
+    color: #fff;
+    padding: 32px 36px;
+    border-radius: 16px;
+    margin: 50px 0;
+  }
+
+  .data-callout-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: var(--pipeline-gold);
+    white-space: nowrap;
+  }
+
+  .data-callout-text {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: rgba(255,255,255,0.8);
+  }
+
+  /* COMPARISON TABLE */
+  .comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 0.95rem;
+  }
+
+  .comparison-table thead th {
+    background: var(--crude-dark);
+    color: #fff;
+    padding: 14px 18px;
+    text-align: left;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .comparison-table thead th:first-child { border-radius: 10px 0 0 0; }
+  .comparison-table thead th:last-child { border-radius: 0 10px 0 0; }
+
+  .comparison-table tbody td {
+    padding: 14px 18px;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    color: var(--text-secondary);
+  }
+
+  .comparison-table tbody tr:hover td {
+    background: rgba(212,168,83,0.05);
+  }
+
+  .comparison-table .price-up {
+    color: var(--alert-red);
+    font-weight: 700;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* STRAIT MAP SVG */
+  .strait-visual {
+    text-align: center;
+    padding: 20px;
+  }
+
+  .strait-visual svg {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* SECTION DIVIDER */
+  .section-divider {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 80px 0 40px;
+  }
+
+  .section-divider .divider-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, var(--pipeline-gold), transparent);
+  }
+
+  .section-divider .divider-icon {
+    font-size: 1.5rem;
+  }
+
+  /* FLOW DIAGRAM */
+  .flow-diagram {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 10px 0;
+  }
+
+  .flow-step {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .flow-number {
+    width: 44px;
+    height: 44px;
+    background: var(--accent-gradient);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    color: #fff;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+
+  .flow-text {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
+  }
+
+  .flow-text strong {
+    color: var(--text-primary);
+  }
+
+  .flow-connector {
+    width: 2px;
+    height: 16px;
+    background: var(--pipeline-gold);
+    margin-left: 21px;
+    opacity: 0.4;
+  }
+
+  /* FOOTER */
+  .article-footer {
+    background: var(--crude-dark);
+    padding: 60px 24px;
+    text-align: center;
+  }
+
+  .article-footer p {
+    color: rgba(255,255,255,0.5);
+    font-size: 0.85rem;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .article-footer .footer-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--pipeline-gold);
+    margin-bottom: 12px;
+  }
+
+  /* BAR CHART INLINE */
+  .bar-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 10px 0;
+  }
+
+  .bar-label {
+    width: 120px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-align: right;
+    flex-shrink: 0;
+    color: var(--text-primary);
+  }
+
+  .bar-track {
+    flex: 1;
+    height: 28px;
+    background: rgba(0,0,0,0.04);
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .bar-fill {
+    height: 100%;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    font-size: 0.7rem;
+    font-family: 'JetBrains Mono', monospace;
+    color: #fff;
+    font-weight: 600;
+    transition: width 1.5s ease;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .figure-block { margin: 40px -12px; }
+    .supply-chain { flex-direction: column; }
+    .chain-arrow { transform: rotate(90deg); }
+    .data-callout { flex-direction: column; text-align: center; }
+    .hero-stats { gap: 24px; }
+    .article-body { padding: 50px 18px; }
+    .article-body h2 { font-size: 1.8rem; }
+  }
+
+  /* PRINT / PDF STYLES */
+  @media print {
+    body { background: #fff; }
+
+    .hero {
+      min-height: auto;
+      padding: 80px 40px;
+      page-break-after: always;
+      break-after: page;
+    }
+
+    .hero-content { max-width: 100%; }
+
+    .oil-drops { display: none; }
+
+    .hero-label,
+    .hero h1,
+    .hero-subtitle,
+    .hero-byline,
+    .hero-stats {
+      opacity: 1 !important;
+      animation: none !important;
+      transform: none !important;
+    }
+
+    .article-body {
+      padding: 40px 20px;
+    }
+
+    .article-body h2 {
+      page-break-after: avoid;
+      break-after: avoid;
+      margin-top: 50px;
+    }
+
+    .article-body h3 {
+      page-break-after: avoid;
+      break-after: avoid;
+    }
+
+    .figure-block {
+      page-break-inside: avoid;
+      break-inside: avoid;
+      margin: 30px 0;
+      box-shadow: none;
+      border: 1px solid #e0e0e0;
+    }
+
+    .pull-quote {
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    .data-callout {
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    .impact-grid {
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    .impact-card {
+      box-shadow: none;
+      border: 1px solid #e0e0e0;
+    }
+
+    .flow-diagram {
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    .supply-chain {
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    .section-divider {
+      page-break-after: avoid;
+      break-after: avoid;
+    }
+
+    .article-footer {
+      page-break-inside: avoid;
+      break-inside: avoid;
+      margin-top: 20px;
+    }
+
+    /* About the Author box */
+    div[style*="ABOUT THE AUTHOR"],
+    div:has(> div[style*="About the Author"]) {
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO SECTION -->
+<section class="hero">
+  <div class="oil-drops">
+    <div class="oil-drop" style="left:10%; animation-delay:0s;"></div>
+    <div class="oil-drop" style="left:25%; animation-delay:1.2s;"></div>
+    <div class="oil-drop" style="left:40%; animation-delay:2.8s;"></div>
+    <div class="oil-drop" style="left:55%; animation-delay:0.6s;"></div>
+    <div class="oil-drop" style="left:70%; animation-delay:3.5s;"></div>
+    <div class="oil-drop" style="left:85%; animation-delay:1.8s;"></div>
+    <div class="oil-drop" style="left:95%; animation-delay:4.2s;"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-label">Long-Form Investigation</div>
+    <h1>When War Meets <span>Oil</span></h1>
+    <p class="hero-subtitle">How armed conflict disrupts the world's most critical supply chain — and sends prices spiraling at the pump, the port, and the dinner table.</p>
+    <div class="hero-byline" style="margin-bottom:30px; opacity:0; animation: fadeUp 1s 0.65s forwards;">
+      <span style="font-family:'Playfair Display',serif; font-size:1.1rem; color:#fff; font-weight:600;">Prathamesh Gadakh</span>
+      <span style="display:block; font-family:'JetBrains Mono',monospace; font-size:0.7rem; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.45); margin-top:4px;">Graduate Student | Northeastern University | April 2026</span>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="hero-stat-number">20M</span>
+        <span class="hero-stat-label">Barrels/Day through Hormuz</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-number">+300%</span>
+        <span class="hero-stat-label">1973 Price Surge</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-number">8M</span>
+        <span class="hero-stat-label">Bbl/Day Lost (2026)</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ARTICLE BODY -->
+<article class="article-body">
+
+  <p class="drop-cap">Oil is the invisible thread woven into nearly everything we consume, move, or build. From the fertilizer that feeds crops to the jet fuel that connects continents, crude petroleum is not merely an energy source — it is the circulatory system of the modern global economy. And when war severs that artery, the consequences cascade far beyond the battlefield.</p>
+
+  <p>Over the past half-century, armed conflicts have repeatedly demonstrated a pattern: military action in or near oil-producing regions triggers supply disruptions, drives prices to historic highs, reshapes trade routes, and sends shockwaves through every economy on earth. This article traces that pattern — from the 1973 Arab oil embargo to the 2022 Russia-Ukraine war and the 2026 Middle East conflict — examining how war disrupts the oil supply chain at every stage and what that means for global prices.</p>
+
+  <!-- SUPPLY CHAIN DIAGRAM -->
+  <div class="figure-block">
+    <div class="figure-header">
+      <h4>The Oil Supply Chain: From Wellhead to Consumer</h4>
+      <div class="figure-sub">Each node represents a point of vulnerability during armed conflict</div>
+    </div>
+    <div class="figure-content">
+      <div class="supply-chain">
+        <div class="chain-node disrupted">
+          <span class="chain-icon">🛢️</span>
+          <span class="chain-label">Extraction</span>
+        </div>
+        <span class="chain-arrow">→</span>
+        <div class="chain-node disrupted">
+          <span class="chain-icon">🚢</span>
+          <span class="chain-label">Maritime Transport</span>
+        </div>
+        <span class="chain-arrow">→</span>
+        <div class="chain-node disrupted">
+          <span class="chain-icon">🏭</span>
+          <span class="chain-label">Refining</span>
+        </div>
+        <span class="chain-arrow">→</span>
+        <div class="chain-node">
+          <span class="chain-icon">🔄</span>
+          <span class="chain-label">Distribution</span>
+        </div>
+        <span class="chain-arrow">→</span>
+        <div class="chain-node">
+          <span class="chain-icon">⛽</span>
+          <span class="chain-label">Consumer</span>
+        </div>
+      </div>
+    </div>
+    <div class="figure-caption">⚠ Nodes marked in red represent the stages most frequently disrupted during armed conflict</div>
+  </div>
+
+  <p>Every stage of the oil supply chain — extraction, transport, refining, distribution, and retail — is vulnerable to wartime disruption. But the first three links are where conflict inflicts the greatest damage. Oil fields are bombed or forced to shut down. Tankers are rerouted or stranded. Refineries are targeted by drone strikes. The downstream effects — higher gasoline prices, expensive food, slower economic growth — are felt by billions.</p>
+
+  <h2>A History of Oil Shocks</h2>
+
+  <p>The relationship between armed conflict and oil price spikes is not new. It is one of the most well-documented patterns in modern economic history. Each major conflict involving an oil-producing region has produced a recognizable shock — a sudden contraction in supply followed by a sharp price increase.</p>
+
+  <!-- HISTORICAL TABLE -->
+  <div class="figure-block">
+    <div class="figure-header">
+      <h4>Major War-Driven Oil Price Shocks</h4>
+      <div class="figure-sub">Half a century of conflicts that reshaped global energy markets</div>
+    </div>
+    <div class="figure-content">
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Conflict</th>
+            <th>Year</th>
+            <th>Supply Lost</th>
+            <th>Price Impact</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Arab Oil Embargo</strong> (Yom Kippur War)</td>
+            <td>1973–74</td>
+            <td>~5% global supply</td>
+            <td class="price-up">$3 → $12/bbl (+300%)</td>
+          </tr>
+          <tr>
+            <td><strong>Iranian Revolution</strong></td>
+            <td>1979</td>
+            <td>~4.8M bbl/day</td>
+            <td class="price-up">$13 → $39.50/bbl (+204%)</td>
+          </tr>
+          <tr>
+            <td><strong>Gulf War</strong> (Iraq invades Kuwait)</td>
+            <td>1990–91</td>
+            <td>~4.3M bbl/day</td>
+            <td class="price-up">$17 → $42/bbl (+147%)</td>
+          </tr>
+          <tr>
+            <td><strong>Iraq War</strong> (U.S. invasion)</td>
+            <td>2003</td>
+            <td>~2M bbl/day</td>
+            <td class="price-up">$25 → $37/bbl (+48%)</td>
+          </tr>
+          <tr>
+            <td><strong>Russia-Ukraine War</strong></td>
+            <td>2022</td>
+            <td>~4.3M bbl/day (sanctions)</td>
+            <td class="price-up">$76 → $110/bbl (+45%)</td>
+          </tr>
+          <tr>
+            <td><strong>Middle East Conflict</strong> (Strait of Hormuz)</td>
+            <td>2026</td>
+            <td>~8M bbl/day</td>
+            <td class="price-up">$71 → $94+/bbl (+32%+)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="figure-caption">Sources: EIA, IEA, World Bank, Al Jazeera, CSIS. Prices are approximate Brent crude benchmarks.</div>
+  </div>
+
+  <h3>The 1973 Embargo: Birth of the Oil Weapon</h3>
+
+  <p>The modern era of oil shocks began during the Yom Kippur War of October 1973. When Arab members of OPEC imposed an embargo against nations supporting Israel, the global oil price quadrupled in a matter of months. Gas stations across the United States ran dry. Countries that had built their postwar prosperity on cheap petroleum were suddenly exposed to the vulnerability of import dependence. The embargo ended the long postwar era of stable, low-cost energy and demonstrated that oil could be wielded as a geopolitical weapon.</p>
+
+  <h3>Russia-Ukraine (2022): Sanctions as Supply Shock</h3>
+
+  <p>When Russia invaded Ukraine in February 2022, the disruption to oil markets came not from physical damage to wells but from the cascade of Western sanctions, self-sanctioning by corporations, and the collapse of trade relationships built over decades. Crude prices surged from roughly $76 per barrel to over $110 within days. The European Union, which had relied on Russia for over 40% of its natural gas, was forced to find new suppliers, fill storage ahead of winter, and cut consumption. The United States banned Russian oil imports. Shipping costs soared as tankers were rerouted, and insurance costs climbed as risk assessments changed.</p>
+
+  <div class="pull-quote">
+    <p>The lifeblood of the global economy is transport. It's getting stuff from A to B. It's a logistics problem, a supply chain problem.</p>
+    <cite>— Economist David McWilliams</cite>
+  </div>
+
+  <h3>2026 Middle East Conflict: The Largest Disruption in History</h3>
+
+  <p>The ongoing conflict in the Middle East has produced what the International Energy Agency has called the largest oil supply disruption in history. The effective closure of the Strait of Hormuz — through which roughly 20 million barrels of oil pass each day — has removed nearly 8% of global supply from the market. Brent crude prices surged from $71 per barrel in late February to $94 within days, and have since climbed further. The IEA authorized the release of 400 million barrels from strategic reserves — a record response to a record disruption.</p>
+
+  <div class="data-callout">
+    <span class="data-callout-number">8M bbl/d</span>
+    <span class="data-callout-text">The amount of global oil supply lost in March 2026 due to the effective closure of the Strait of Hormuz — the single largest supply disruption in history, equal to roughly 8% of world demand.</span>
+  </div>
+
+  <h2>The Strait of Hormuz: World's Most Dangerous Chokepoint</h2>
+
+  <p>No single waterway carries more geopolitical weight than the Strait of Hormuz. This narrow passage between Iran and Oman connects the Persian Gulf — home to five of the world's top oil producers — to global markets. About one-fifth of all oil consumed worldwide transits this corridor, along with a similar share of global LNG trade. When conflict disrupts passage through Hormuz, the impact is immediate and global.</p>
+
+  <!-- HORMUZ INFOGRAPHIC -->
+  <div class="figure-block">
+    <div class="figure-header">
+      <h4>Strait of Hormuz: Who Depends on It Most</h4>
+      <div class="figure-sub">Share of crude oil imports passing through the strait</div>
+    </div>
+    <div class="figure-content">
+      <div class="bar-row">
+        <span class="bar-label">Japan</span>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:90%; background: linear-gradient(90deg, #C0392B, #E87A20);">~90%</div>
+        </div>
+      </div>
+      <div class="bar-row">
+        <span class="bar-label">South Korea</span>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:70%; background: linear-gradient(90deg, #C0392B, #E87A20);">~70%</div>
+        </div>
+      </div>
+      <div class="bar-row">
+        <span class="bar-label">India</span>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:55%; background: linear-gradient(90deg, #D4A853, #E87A20);">~55%</div>
+        </div>
+      </div>
+      <div class="bar-row">
+        <span class="bar-label">China</span>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:40%; background: linear-gradient(90deg, #D4A853, #E87A20);">~40%</div>
+        </div>
+      </div>
+      <div class="bar-row">
+        <span class="bar-label">EU</span>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:25%; background: linear-gradient(90deg, #4A5568, #6B7280);">~25%</div>
+        </div>
+      </div>
+    </div>
+    <div class="figure-caption">Source: WEF, EIA. Over 80% of Hormuz-transiting oil heads to Asian markets.</div>
+  </div>
+
+  <p>Japan relies on the Middle East for approximately 90% of its crude imports, most of which passes through the strait. South Korea sources about 70% of its crude from the region. When the strait became effectively impassable in early 2026, these economies were immediately and severely impacted. South Korea activated a $68 billion market-stabilization program. Japan began drawing down strategic reserves at an unprecedented rate.</p>
+
+  <h2>How War Disrupts Oil Prices: The Cascade Effect</h2>
+
+  <p>The mechanism by which armed conflict translates into higher oil prices is not a single event — it is a cascade that amplifies at every stage. Understanding this chain of cause and effect reveals why even brief conflicts can produce prolonged periods of high prices.</p>
+
+  <div class="figure-block">
+    <div class="figure-header">
+      <h4>The Cascade: From Conflict to Consumer Impact</h4>
+      <div class="figure-sub">Each stage amplifies the disruption that precedes it</div>
+    </div>
+    <div class="figure-content">
+      <div class="flow-diagram">
+        <div class="flow-step">
+          <div class="flow-number">1</div>
+          <div class="flow-text"><strong>Armed conflict erupts</strong> in or near a major oil-producing region, threatening physical infrastructure and maritime routes.</div>
+        </div>
+        <div class="flow-connector"></div>
+        <div class="flow-step">
+          <div class="flow-number">2</div>
+          <div class="flow-text"><strong>Supply is physically disrupted.</strong> Fields shut in, ports close, tankers anchor. Millions of barrels per day are removed from the market.</div>
+        </div>
+        <div class="flow-connector"></div>
+        <div class="flow-step">
+          <div class="flow-number">3</div>
+          <div class="flow-text"><strong>Risk premiums surge.</strong> Insurance costs skyrocket. Shipping companies cancel bookings. Even unaffected routes become more expensive.</div>
+        </div>
+        <div class="flow-connector"></div>
+        <div class="flow-step">
+          <div class="flow-number">4</div>
+          <div class="flow-text"><strong>Speculative trading amplifies the spike.</strong> Futures traders price in worst-case scenarios. Volatility feeds on itself.</div>
+        </div>
+        <div class="flow-connector"></div>
+        <div class="flow-step">
+          <div class="flow-number">5</div>
+          <div class="flow-text"><strong>Downstream costs rise across the economy.</strong> Transport, fertilizer, plastics, food — everything touched by petroleum becomes more expensive.</div>
+        </div>
+        <div class="flow-connector"></div>
+        <div class="flow-step">
+          <div class="flow-number">6</div>
+          <div class="flow-text"><strong>Inflationary pressure mounts.</strong> Central banks face impossible trade-offs: fight inflation and risk recession, or support growth and risk runaway prices.</div>
+        </div>
+      </div>
+    </div>
+    <div class="figure-caption">This cascade explains why oil price spikes outlast the conflicts that trigger them.</div>
+  </div>
+
+  <p>This cascade also explains a crucial pattern: oil price shocks caused by war almost always outlast the conflict itself. Fields that were shut in may take weeks or months to restart. Damaged infrastructure requires physical repair. Insurance markets remain cautious long after the shooting stops. And the fear of recurrence keeps a risk premium baked into every barrel.</p>
+
+  <div class="section-divider">
+    <div class="divider-line"></div>
+    <span class="divider-icon">🔥</span>
+    <div class="divider-line" style="background: linear-gradient(to left, var(--pipeline-gold), transparent);"></div>
+  </div>
+
+  <h2>Beyond Oil: The Wider Economic Fallout</h2>
+
+  <p>Oil price shocks do not exist in isolation. They radiate outward through the global economy, affecting industries and populations that may seem far removed from the energy sector. The mechanism is straightforward: oil touches everything.</p>
+
+  <div class="impact-grid">
+    <div class="impact-card">
+      <span class="card-icon">🌾</span>
+      <h5>Food Prices</h5>
+      <p>Fertilizers are petroleum-derived. Trucks and ships run on diesel. When oil prices rise 25%, food costs follow — hitting developing nations hardest.</p>
+    </div>
+    <div class="impact-card">
+      <span class="card-icon">📦</span>
+      <h5>Shipping & Logistics</h5>
+      <p>Rerouted ships, cancelled insurance, port closures. The 2026 Hormuz disruption suspended an estimated one-fifth of global crude and LNG supply.</p>
+    </div>
+    <div class="impact-card">
+      <span class="card-icon">💹</span>
+      <h5>Inflation</h5>
+      <p>Oil shocks feed directly into consumer prices. Every major oil price spike since 1973 has been followed by measurable inflationary pressure.</p>
+    </div>
+    <div class="impact-card">
+      <span class="card-icon">🏗️</span>
+      <h5>Industrial Output</h5>
+      <p>Higher energy costs squeeze margins in steel, chemicals, and electronics manufacturing — particularly in energy-importing economies in Asia and Europe.</p>
+    </div>
+    <div class="impact-card">
+      <span class="card-icon">💰</span>
+      <h5>Developing Economies</h5>
+      <p>Nations already spending more on debt than on health or education face currency depreciation, capital flight, and rising borrowing costs.</p>
+    </div>
+    <div class="impact-card">
+      <span class="card-icon">⚡</span>
+      <h5>Energy Transition</h5>
+      <p>Each crisis accelerates investment in renewables, nuclear, and electrification as nations seek to reduce their dependence on imported fossil fuels.</p>
+    </div>
+  </div>
+
+  <p>The 2022 Russia-Ukraine war forced Europe into an emergency energy restructuring. Russia's pipeline gas deliveries to Europe fell by 80 billion cubic meters. The continent sourced replacement LNG from the United States, cut industrial gas use by 25%, and invested heavily in renewable capacity. These shifts, born from crisis, have permanently altered global energy trade patterns.</p>
+
+  <p>The 2026 Middle East conflict has extended this restructuring further. Urea fertilizer prices have risen by 30% in a single month. The disruption of Qatar's helium supply threatens semiconductor manufacturing worldwide. UNCTAD projects that global merchandise trade growth will decelerate from 4.7% to as low as 1.5% in 2026.</p>
+
+  <div class="data-callout">
+    <span class="data-callout-number">3.4B</span>
+    <span class="data-callout-text">An estimated 3.4 billion people live in countries already spending more on debt than on health or education — populations most vulnerable to energy-driven inflation.</span>
+  </div>
+
+  <h2>What Happens Next?</h2>
+
+  <p>History shows that the world adapts to oil shocks, but the adaptation is painful and slow. After 1973, governments created strategic petroleum reserves and invested in energy efficiency. After 2022, Europe accelerated its shift away from Russian energy. After each crisis, the global oil intensity of GDP has declined — meaning each dollar of economic output requires less oil than the one before.</p>
+
+  <p>But the fundamental vulnerability remains. As long as the global economy depends on a commodity concentrated in geopolitically volatile regions, transported through narrow chokepoints, and priced on speculative markets, armed conflict will continue to send oil prices soaring and economic ripples spreading.</p>
+
+  <p>The question is not whether the next oil shock will come. The question is whether the world will have diversified enough — through renewables, electrification, and resilient supply chains — to absorb it.</p>
+
+  <!-- FINAL CHART: OIL INTENSITY DECLINE -->
+  <div class="figure-block">
+    <div class="figure-header">
+      <h4>A Silver Lining: Declining Oil Intensity of Global GDP</h4>
+      <div class="figure-sub">Barrels of oil per $1,000 of real GDP (approximate)</div>
+    </div>
+    <div class="figure-content">
+      <div class="bar-row">
+        <span class="bar-label">1973</span>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:95%; background: var(--crude-dark);">1.9 bbl/$1k</div>
+        </div>
+      </div>
+      <div class="bar-row">
+        <span class="bar-label">1990</span>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:72%; background: var(--sea-blue);">1.4 bbl/$1k</div>
+        </div>
+      </div>
+      <div class="bar-row">
+        <span class="bar-label">2000</span>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:60%; background: var(--refinery-steel);">1.1 bbl/$1k</div>
+        </div>
+      </div>
+      <div class="bar-row">
+        <span class="bar-label">2015</span>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:42%; background: var(--flame-orange);">0.8 bbl/$1k</div>
+        </div>
+      </div>
+      <div class="bar-row">
+        <span class="bar-label">2025</span>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:32%; background: var(--pipeline-gold);">0.6 bbl/$1k</div>
+        </div>
+      </div>
+    </div>
+    <div class="figure-caption">Source: Energy Institute, World Bank, CSIS. Each crisis drives efficiency gains, but the world remains deeply dependent on oil.</div>
+  </div>
+
+  <div class="section-divider">
+    <div class="divider-line"></div>
+    <span class="divider-icon">●</span>
+    <div class="divider-line" style="background: linear-gradient(to left, var(--pipeline-gold), transparent);"></div>
+  </div>
+
+  <!-- ABOUT THE AUTHOR -->
+  <div style="background:#fff; border-radius:16px; padding:36px; box-shadow:0 2px 20px rgba(0,0,0,0.04); border:1px solid rgba(0,0,0,0.06); margin:40px 0 50px;">
+    <div style="font-family:'JetBrains Mono',monospace; font-size:0.7rem; letter-spacing:3px; text-transform:uppercase; color:var(--pipeline-gold); margin-bottom:12px;">About the Author</div>
+    <div style="font-family:'Playfair Display',serif; font-size:1.4rem; font-weight:700; color:var(--text-primary); margin-bottom:10px;">Prathamesh Gadakh</div>
+    <p style="font-size:0.95rem; color:var(--text-secondary); line-height:1.6; margin-bottom:0;">Prathamesh Gadakh is a graduate student at Northeastern University, Boston, studying Data Analytics, Project Management, and Supply Chain Analysis. He is based in Pune, India.</p>
+  </div>
+
+  <p style="font-style: italic; text-align: center; color: var(--refinery-steel); margin-top: 40px; font-size: 0.95rem;">
+    Sources include the International Energy Agency, U.S. Energy Information Administration, World Economic Forum, UNCTAD, CSIS, World Bank, Al Jazeera, Oxford Institute for Energy Studies, KPMG, and the Federal Reserve.
+  </p>
+
+</article>
+
+<footer class="article-footer">
+  <div class="footer-title">When War Meets Oil</div>
+  <p style="color:rgba(255,255,255,0.7); font-family:'Playfair Display',serif; font-size:1rem; margin-bottom:8px;">By Prathamesh Gadakh</p>
+  <p style="color:rgba(255,255,255,0.45); font-size:0.75rem; font-family:'JetBrains Mono',monospace; letter-spacing:1px; margin-bottom:16px;">Graduate Student, Data Analytics & Supply Chain | Northeastern University</p>
+  <p>A data-driven exploration of how armed conflict disrupts the global oil supply chain and reshapes the world economy. Written and designed with research from IEA, EIA, WEF, UNCTAD, and other sources.</p>
+</footer>
+
+</body>
+</html>
